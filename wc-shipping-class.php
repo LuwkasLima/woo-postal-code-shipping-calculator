@@ -29,7 +29,10 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 	/**
 	 * calculate_shipping function.
 	 */
-	public function calculate_shipping($package = array()) {;
+	public function calculate_shipping($package = array()) {
+		if(!$this->codes_array || empty($this->codes_array))
+			return;
+
 		if(array_key_exists($package['destination']['postcode'], $this->codes_array) && $package['destination']['country'] == 'GB' ){
 			$rate = array(
 				'id' 		=> $this->id,
@@ -37,6 +40,18 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 				'cost'      => intval($this->codes_array[$package['destination']['postcode']])
 			);
 			$this->add_rate( $rate );
+			return true;
+		}
+		$multiple = explode(' ', $package['destination']['postcode']);
+		$multiple = $multiple[0] . ' *';
+		if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
+			$rate = array(
+				'id' 		=> $this->id,
+				'label' 	=> $this->title,
+				'cost'      => intval($this->codes_array[$multiple])
+			);
+			$this->add_rate( $rate );
+			return true;
 		}
 	}
 	/**
