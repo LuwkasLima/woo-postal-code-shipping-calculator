@@ -30,7 +30,7 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 	 * calculate_shipping function.
 	 */
 	public function calculate_shipping($package = array()) {
-		if(!$this->codes_array || empty($this->codes_array))
+		if(!$this->codes_array || empty($this->codes_array) || !is_array($this->codes_array))
 			return;
 
 		if(array_key_exists($package['destination']['postcode'], $this->codes_array) && $package['destination']['country'] == 'GB' ){
