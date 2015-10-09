@@ -79,8 +79,20 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 			),
 		);
 	}
-	/**
-	 * Get postcodes for this method
-	 * @return array
-	 */
+
+	public function is_available( $package ) {
+        if ( 'no' == $this->enabled ) {
+            return false;
+        }
+
+       if(array_key_exists($package['destination']['postcode'], $this->codes_array) && $package['destination']['country'] == 'GB' ){
+			return true;
+		}
+		$multiple = explode(' ', $package['destination']['postcode']);
+		$multiple = $multiple[0] . ' *';
+		if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
+			return true;
+		}
+        return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', true, $package );
+    }
 }
