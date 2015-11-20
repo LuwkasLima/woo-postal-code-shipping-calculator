@@ -53,6 +53,31 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 			$this->add_rate( $rate );
 			return true;
 		}
+		$multiple = explode(' ', $package['destination']['postcode']);
+		$multiple = $multiple[0] . ' *';
+		if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
+			$rate = array(
+				'id' 		=> $this->id,
+				'label' 	=> $this->title,
+				'cost'      => intval($this->codes_array[$multiple])
+			);
+			$this->add_rate( $rate );
+			return true;
+		}
+		$postcode = $package['destination']['postcode'];
+		for ($i = 1; $i < strlen( $postcode ) ; $i++) {
+			$postcode = substr_replace( $postcode, '', -1 );
+			$multiple = $postcode . '*';
+			if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
+				$rate = array(
+					'id' 		=> $this->id,
+					'label' 	=> $this->title,
+					'cost'      => intval($this->codes_array[$multiple])
+				);
+				$this->add_rate( $rate );
+				return true;
+			}
+		}
 	}
 	/**
 	 * init_form_fields function.
@@ -92,6 +117,20 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 		$multiple = $multiple[0] . ' *';
 		if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
 			return true;
+		}
+		$postcode = $package['destination']['postcode'];
+		for ($i = 1; $i < strlen( $postcode ); $i++) {
+			$postcode = substr_replace( $postcode, '', -1 );
+			$multiple = $postcode . '*';
+			if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
+				$rate = array(
+					'id' 		=> $this->id,
+					'label' 	=> $this->title,
+					'cost'      => intval($this->codes_array[$multiple])
+				);
+				$this->add_rate( $rate );
+				return true;
+			}
 		}
         return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', true, $package );
     }
