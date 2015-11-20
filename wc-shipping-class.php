@@ -65,7 +65,8 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 			return true;
 		}
 		$postcode = $package['destination']['postcode'];
-		for ($i = 1; $i < strlen( $postcode ) ; $i++) {
+		$postcode_size = strlen( $postcode );
+		for ($i = 0; $i != $postcode_size; $i++) {
 			$postcode = substr_replace( $postcode, '', -1 );
 			$multiple = $postcode . '*';
 			if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
@@ -75,6 +76,7 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 					'cost'      => intval($this->codes_array[$multiple])
 				);
 				$this->add_rate( $rate );
+				break;
 				return true;
 			}
 		}
@@ -119,16 +121,12 @@ class WC_Shipping_UK_Postcodes extends WC_Shipping_Method {
 			return true;
 		}
 		$postcode = $package['destination']['postcode'];
-		for ($i = 1; $i < strlen( $postcode ); $i++) {
+		$postcode_size = strlen( $postcode );
+		for ($i = 0; $i != $postcode_size; $i++) {
 			$postcode = substr_replace( $postcode, '', -1 );
 			$multiple = $postcode . '*';
 			if(array_key_exists($multiple, $this->codes_array) && $package['destination']['country'] == 'GB'){
-				$rate = array(
-					'id' 		=> $this->id,
-					'label' 	=> $this->title,
-					'cost'      => intval($this->codes_array[$multiple])
-				);
-				$this->add_rate( $rate );
+				break;
 				return true;
 			}
 		}
