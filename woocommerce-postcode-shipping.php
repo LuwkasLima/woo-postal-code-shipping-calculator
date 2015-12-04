@@ -9,7 +9,7 @@
  * @copyright 2014 Your Name or Company Name
  *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce UK Postcodes Shipping
+ * Plugin Name:       WooCommerce JSON Postcodes Shipping
  * Plugin URI:        @TODO
  * Description:       @TODO
  * Version:           1.0.0
@@ -29,8 +29,18 @@ function wc_uk_shipping_class() {
 	include('wc-shipping-class.php');
 }
 function add_wc_uk_shipping_class( $methods ) {
-	$methods[] = 'WC_Shipping_UK_Postcodes';
+	$methods[] = 'WC_Shipping_JSON_PostCode';
 	return $methods;
 }
 add_action( 'woocommerce_shipping_init', 'wc_uk_shipping_class' );
 add_filter( 'woocommerce_shipping_methods', 'add_wc_uk_shipping_class' );
+
+/**
+ * Load plugin textdomain.
+ *
+ * @since 1.0.0
+ */
+function wc_shipping_json_postcode_load_textdomain() {
+  load_plugin_textdomain( 'uk-postcodes-shipping', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'wc_shipping_json_postcode_load_textdomain' );
