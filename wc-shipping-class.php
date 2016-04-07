@@ -6,8 +6,8 @@ class WC_Shipping_JSON_PostCode extends WC_Shipping_Method {
 	 */
 	public function __construct() {
 		$this->id                 = 'wc_shipping_json_postcode';
-		$this->method_title       = __( 'WooCommerce JSON Postcode Shipping', 'uk-postcodes-shipping' );
-		$this->method_description = __( 'WooCommerce JSON Postcode Shipping', 'uk-postcodes-shipping' );
+		$this->method_title       = __( 'WooCommerce JSON Postcode Shipping', 'woo-postcode-shipping' );
+		$this->method_description = __( 'WooCommerce JSON Postcode Shipping', 'woo-postcode-shipping' );
 		$this->init();
 	}
 	/**
@@ -90,19 +90,19 @@ class WC_Shipping_JSON_PostCode extends WC_Shipping_Method {
 	public function init_form_fields() {
 		$this->form_fields = array(
 			'enabled' => array(
-				'title'   => __( 'Enable', 'uk-postcodes-shipping' ),
+				'title'   => __( 'Enable', 'woo-postcode-shipping' ),
 				'type'    => 'checkbox',
 				'label'   => '',
 				'default' => 'no'
 			),
 			'title' => array(
-				'title'       => __( 'Title', 'uk-postcodes-shipping' ),
+				'title'       => __( 'Title', 'woo-postcode-shipping' ),
 				'type'        => 'text',
-				//'description' => __( 'This controls the title which the user sees during checkout.', 'uk-postcodes-shipping' ),
+				//'description' => __( 'This controls the title which the user sees during checkout.', 'woo-postcode-shipping' ),
 				'desc_tip'    => true,
 			),
 			'codes' => array(
-				'title'       => __( 'Put postcodes & price in JSON format', 'uk-postcodes-shipping' ),
+				'title'       => __( 'Put postcodes & price in JSON format', 'woo-postcode-shipping' ),
 				'type'        => 'textarea',
 				'default'     => '',
 				'description' => __('Read documentation for more information: <a href="https://github.com/matheusgimenez/woocommerce-postcode-shipping/wiki">GitHub Wiki</a>')

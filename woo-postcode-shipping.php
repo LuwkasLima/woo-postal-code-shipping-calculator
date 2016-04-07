@@ -15,11 +15,11 @@
  * Version:           1.0.0
  * Author:            @TODO
  * Author URI:        @TODO
- * Text Domain:       uk-postcodes-shipping
+ * Text Domain:       woo-postcode-shipping
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- * GitHub Plugin URI: https://github.com/brasadesign/uk-postcodes-shipping
+ * GitHub Plugin URI: https://github.com/brasadesign/woo-postcode-shipping
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -41,6 +41,6 @@ add_filter( 'woocommerce_shipping_methods', 'add_wc_uk_shipping_class' );
  * @since 1.0.0
  */
 function wc_shipping_json_postcode_load_textdomain() {
-  load_plugin_textdomain( 'uk-postcodes-shipping', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+  load_plugin_textdomain( 'woo-postcode-shipping', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
 add_action( 'plugins_loaded', 'wc_shipping_json_postcode_load_textdomain' );

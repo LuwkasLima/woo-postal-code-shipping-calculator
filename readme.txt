@@ -1,4 +1,4 @@
-=== Your Plugin Name ===
+=== Woo Postal Code Shipping Calculator ===
 Contributors: MatheusGimenez, brasadesign
 Donate link: http://brasa.art.br
 Tags: woocommerce, shipping, postcode
@@ -12,7 +12,7 @@ Plugin to set shipping prices based on client postcode (zipcode), using a JSON f
 
 == Description ==
 
-To start well: you know JSON? Holly fuck is this?! Please read about it: http://json.org/example http://json.org/example
+To start well: you know JSON? What the holy fuck is this? Please read about it: http://json.org/example
 
 To add postcodes you go to your dashboard -> WooCommerce -> Settings -> Shipping
 
@@ -41,6 +41,10 @@ With *: { "EC1A *":"15" }
 = What is the plugin license? =
 
 * This plugin is released under a GPL license.
+
+= Work in United Kingdom? =
+
+* Yes.
 
 == Changelog ==
 
