@@ -8,18 +8,31 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Plugin to set shipping prices based on client postcode (zipcode), using a JSON file.
+Plugin that creates a Woo Shipping Method to calculate shipping rates based on postcodes/zipcodes, using JSON structure.
 
 == Description ==
 
-To start well: you know JSON? What the holy fuck is this? Please read about it: http://json.org/example
+Are you having troubles to find a plugin that allows you to create a shipping calculator based on postcodes/zipcodes? You don't need to go crazy, you've found it! With this plugin you will be able to setup a calculator using JSON that will automatically calculate shipping rates based on customer's postcodes/zipcodes.
 
-To add postcodes you go to your dashboard -> WooCommerce -> Settings -> Shipping
+To begin with: Do you know JSON? (What the f* is this?) Please read about it here: http://json.org/example
 
-In shipping page you go to section Shipping Methods and click on settings in UK Postcodes shipping column, first, enable it. Before enable, go to text area and add the code.
+After installing this plugin, you go to your Dashboard -> WooCommerce -> Settings -> Shipping. The plugin will create a new Shipping Method that will allow you, using JSON, to calculate shipping rates for any postcode/zipcode. The syntax to setup the plugin can be found below:
+
 Syntax:
 
-{ "CODE": "price" }
+{ "postcode": "rate" }
+
+Multiple:
+
+{
+"postcode": "rate",
+"postcode2": "rate",
+"postcode3": "rate",
+"postcode4": "rate",
+"postcode5": "rate",
+"postcode6": "rate",
+}
+
 Working examples:
 
 { "EC1A 1AH": "50" }
@@ -28,7 +41,9 @@ Multiple:
 
 { "EC1A 1AH": "50", "WC1B": "50", }
 
-With *: { "EC1A *":"15" }
+You can also use "*" to generalize the postcodes/zipcodes:
+
+{ "EC1A *":"15" }
 
 
 == Installation ==
